@@ -1,0 +1,8 @@
+name = str(input("Hi. What's your name?"))
+age = int(input("And how old are you?"))
+weigh = int(input("Okay, las quesstion. How many pounds do you weigh?"))
+print("\nDid you konw that you're just", age/7, "in dog years?\n")
+print("But you're also over", age * 31536000, "secends old.\n")
+print("If a small child were trying to get your attention, yout name would become:", name*5, "\n")
+print("Did you know that on the moon you would weigh only", float(weigh / 6), "pounds?")
+print("But on the sun, you'd weigh", float(weigh * 27.1), "<but, ah... not for long>.")
