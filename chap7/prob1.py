@@ -39,7 +39,7 @@ def human_move(board, human):
 
 
 def computer_move(board, human, computer):
-
+    pass
 
 
 def play_tic_tac_toe(human, computer):
