@@ -1,3 +1,5 @@
+import random
+
 def display_instruct():
     print("\tWelcome to the graeatest intellectual challenge of all time: Tic-Tac-Toe.")
     print("\tThis will be a showdown betwwen your human brain and my silicon processor.\n")
@@ -14,6 +16,8 @@ def display_instruct():
     while True:
         ask_yes_no = input("Do you require the first move? <y/n>:")
 
+        # first move : X
+        # rast move : O
         if ask_yes_no == "y" or ask_yes_no == "Y":
             return "X", "O"
         elif ask_yes_no == "n" or ask_yes_no == "N":
@@ -22,7 +26,7 @@ def display_instruct():
             print("please enter <y/n>")
 
 
-def new_board():
+def initial_board():
     board = [[" " for x in range(3)] for y in range(3)]
     return board
 
@@ -34,34 +38,70 @@ def display_board(board):
             print("\t\t---------")
 
 
-def human_move(board, human):
-    move = int(input("Where will you move? <0 - 8>:"))
+def player(board):
+    first, last = 0, 0
+    for i in board:
+        for j in i:
+            if j == "X":
+                first += 1
+            elif j == "O":
+                last += 1
+
+    if first == last:
+        return "X"
+    else:
+        return "O"
 
 
-def computer_move(board, human, computer):
-    pass
+def human_move(board, human, cases):
+    while(True):
+        move = int(input("Where will you move? <0 - 8>:"))
+        for i in cases:
+            if move == i:
+                print()
+
+    row = int(move / 3)
+    col = int(move - (row * 3))
+    board[row][col] = human
+    return board
+
+
+def computer_move(board, computer):
+    move = random.randint(0, 8)
+    row = int(move / 3)
+    col = int(move - (row * 3))
+    board[row][col] = computer
+    return board
+
+def actions(board):
+    cases = []
+    for i in range(len(board)):
+        for j in range(len(board[i])):
+            if board[i][j] == " ":
+                cases.append((i * 3) + j)
+
+    return cases
 
 
 def play_tic_tac_toe(human, computer):
-    turn = "X"
-    board = new_board()
+    board = initial_board()
+    turn = player(board)
     display_board(board)
+    while(True):
+        cases = actions(board)
+        if turn == human:
+            board = human_move(board, human, cases)
 
-    if turn == human:
-        move = human_move(board, human)
-        board[move] = human
+        else:
+            board = computer_move(board, computer, cases)
 
-    else:
-        move = computer_move(board, human, computer)
-        board[move] = computer
-
+        display_board(board)
+        turn = player(board)
 
 
 
 if __name__ == '__main__':
-    # pieces==True : human first, pieces==False : computer first
     human, computer = display_instruct()
     play_tic_tac_toe(human, computer)
-    board = new_board()
-    display_board(board)
+    board = initial_board()
     print(human, computer)
