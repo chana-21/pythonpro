@@ -55,10 +55,17 @@ def player(board):
 
 def human_move(board, human, cases):
     while(True):
+        i = None
         move = int(input("Where will you move? <0 - 8>:"))
         for i in cases:
             if move == i:
-                print()
+                break
+
+        if move == i:
+            print("Fine..")
+            break
+        else:
+            print("Error")
 
     row = int(move / 3)
     col = int(move - (row * 3))
@@ -66,12 +73,15 @@ def human_move(board, human, cases):
     return board
 
 
-def computer_move(board, computer):
-    move = random.randint(0, 8)
+def computer_move(board, computer, cases):
+    move = random.choice(cases)
+    print("I shall take square number", move)
+
     row = int(move / 3)
     col = int(move - (row * 3))
     board[row][col] = computer
     return board
+
 
 def actions(board):
     cases = []
@@ -83,10 +93,35 @@ def actions(board):
     return cases
 
 
+def terminal(board):
+    for i in range(len(board)):
+        row_index = board[i][0]
+        col_index = board[0][i]
+        row_tmp, col_tmp = 0, 0
+
+        for j in range(len(board[i])):
+            if row_index == board[i][j]:
+                row_tmp += 1
+            if col_index == board[j][i]:
+                col_tmp += 1
+
+        if row_tmp == 3:
+            return row_index
+        if col_tmp == 3:
+            return col_index
+
+    diag = board[1][1]
+    if not diag == " ":
+        if (diag == board[0][0] and diag == board[2][2]) or\
+                (diag == board[0][2] and diag == board[2][0]):
+            return diag
+
+    return False
+
+
 def play_tic_tac_toe(human, computer):
     board = initial_board()
     turn = player(board)
-    display_board(board)
     while(True):
         cases = actions(board)
         if turn == human:
@@ -97,11 +132,19 @@ def play_tic_tac_toe(human, computer):
 
         display_board(board)
         turn = player(board)
-
+        print("\n")
+        winner = terminal(board)
+        if not winner:
+            continue
+        elif winner == human:
+            print("human is win")
+            break
+        elif winner == computer:
+            print("computer is win")
+            break
 
 
 if __name__ == '__main__':
     human, computer = display_instruct()
     play_tic_tac_toe(human, computer)
     board = initial_board()
-    print(human, computer)
