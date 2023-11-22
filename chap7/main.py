@@ -1,4 +1,4 @@
-import prob1
+from start_game import play_tic_tac_toe
 
 
 def display_instruct():
@@ -14,6 +14,19 @@ def display_instruct():
     print("\t\t6 | 7 | 8")
     print("\tPrepare yourself, human. The ultimate battle is about to begin.\n")
 
+
+def difficulty_level():
+    print("[1]\tEasy")
+    print("[2]\tHard")
+    while True:
+        diff = int(input("Select the difficulty level <1/2> : "))
+        if diff == 1 or diff == 2:
+            break
+
+    return diff
+
+
+def sequence():
     while True:
         ask_yes_no = input("Do you require the first move? <y/n>:")
         # first move : X
@@ -22,12 +35,11 @@ def display_instruct():
             return "X", "O"
         elif ask_yes_no == "n" or ask_yes_no == "N":
             return "O", "X"
-        else:
-            print("please enter <y/n>")
 
-
-def 
 
 if __name__ == '__main__':
-    human, computer = display_instruct()
-    prob1.play_tic_tac_toe(human, computer)
+    display_instruct()
+    diff = difficulty_level()
+    human, computer = sequence()
+
+    play_tic_tac_toe(human, computer, diff)

@@ -8,7 +8,7 @@ element_list = list(element)
 guess_list = ["_"] * len(element_list)
 
 print("Guess the Word!!!")
-print("In this game, the program selects a word at random, and the player's objective is to guess the chosen word.\n")
+print("In this game, the program selects a word at computer_move, and the player's objective is to guess the chosen word.\n")
 
 print("Length of the selected word:", len(element_list))
 

@@ -1,7 +1,7 @@
 import random
 
 
-def random_move(board, computer, cases):
+def easy_level(board, computer, cases):
     move = random.choice(cases)
     print("I shall take square number", move)
 
