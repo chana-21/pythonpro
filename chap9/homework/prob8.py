@@ -96,12 +96,15 @@ if __name__ == '__main__':
 
         if choice == 0:
             break
+
         elif choice == 1:
             level = crit.talk()
             crit.setMood(level)
+
         elif choice == 2:
             level = crit.feed(foods)
             crit.setMood(level)
+
         elif choice == 3:
             level = crit.play()
             crit.setMood(level)
