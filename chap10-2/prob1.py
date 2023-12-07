@@ -39,8 +39,13 @@ if __name__ == '__main__':
     card2 = Unprintable_Card("A", "d")
     card3 = Positionable_Card("A", "h")
 
+    print("Printing a Card object:")
     print(card1)  # Ac
+    print("\nPrinting an Unprintable_Card object:")
     print(card2)  # <unprintable>
+    print("\nPrinting a Positionable_Card object:")
     print(card3)  # Ah
+    print("Flipping the Positionable_Card object.")
     card3.flip()
+    print("Printing the Positionable_Card object:")
     print(card3)  # XX
