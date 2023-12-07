@@ -125,7 +125,7 @@ class Dealer(Hand):
 
 class BlackJackGame:
     def __init__(self):
-        print("Welcome to the worlds simplest game!")
+        print("\t\t\tWelcome to the worlds simplest game!\n")
         self.player_num = None
         self.players = []
         self.stay_players = []
@@ -215,7 +215,7 @@ class BlackJackGame:
                 tmp = player.get_value()
                 name = player.name
 
-        print(name, "wins")
+        print(name, "wins.")
 
 
 if __name__ == '__main__':
